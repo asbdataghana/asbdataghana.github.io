@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ASBData Ghana | Instant MTN, AT & Telecel Data Bundles</title>
+<meta name="description" content="Buy MTN, AirtelTigo and Telecel data bundles instantly with Mobile Money. Apply to become an ASBData Ghana agent and earn commission on every sale." />
+<link rel="icon" href="assets/logo.png" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <img src="assets/logo.png" alt="ASBData Ghana" />
+    </a>
+    <nav class="nav-links">
+      <a href="#bundles">Data Bundles</a>
+      <a href="#how-it-works">How it Works</a>
+      <a href="#agents">Become an Agent</a>
+      <a href="agent-login.html">Agent Login</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="agent-login.html" class="btn btn-ghost btn-sm">Agent Login</a>
+      <a href="#bundles" class="btn btn-primary btn-sm">Buy Data Now</a>
+    </div>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container hero-copy">
+    <img src="assets/logo.png" alt="ASBData Ghana" class="hero-logo" />
+    <h1>Ghana's fastest way to buy data — and to earn from it.</h1>
+    <p>ASBData Ghana delivers MTN, AirtelTigo and Telecel bundles in seconds flat, and pays real commission to anyone who becomes an agent.</p>
+    <div class="hero-actions">
+      <a href="#bundles" class="btn btn-primary">Buy Data Now</a>
+      <a href="agent-register.html" class="btn btn-ghost">Become an Agent</a>
+    </div>
+    <div class="hero-trust">
+      <span><strong>24/7</strong> instant delivery</span>
+      <span><strong>3</strong> networks supported</span>
+      <span><strong>MoMo</strong> payments accepted</span>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="bundles">
+  <div class="container">
+    <div class="section-head center">
+      <h2>Grab a data bundle</h2>
+      <p>Choose a network below, then buy straight from the card — no account needed.</p>
+    </div>
+    <div class="shop-tabs" id="shop-tabs">
+      <button class="shop-tab active" data-network="mtn">MTN</button>
+      <button class="shop-tab" data-network="telecel">Telecel</button>
+      <button class="shop-tab" data-network="airteltigo">AirtelTigo</button>
+    </div>
+    <div class="bundle-shop-grid" id="bundle-grid"></div>
+  </div>
+</section>
+
+<!-- Buy modal -->
+<div class="modal-overlay" id="buy-modal">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+    <h3>Confirm your purchase</h3>
+    <div class="modal-summary" id="modal-summary"></div>
+    <div id="buy-message" class="form-message"></div>
+    <form id="buy-form">
+      <div class="field">
+        <label for="buy-number">Recipient number</label>
+        <input id="buy-number" type="tel" placeholder="024 000 0000" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="buy-submit">Pay with MoMo</button>
+    </form>
+  </div>
+</div>
+
+<section class="section section-soft" id="how-it-works">
+  <div class="container">
+    <div class="section-head">
+      <h2>How it works</h2>
+      <p>Three steps between you and a full data bundle.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card">
+        <span class="step-num">1</span>
+        <h3>Choose your bundle</h3>
+        <p>Select a network and a bundle size that fits what you need.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">2</span>
+        <h3>Enter the number & pay</h3>
+        <p>Type in the phone number to top up and pay securely with Mobile Money.</p>
+      </div>
+      <div class="step-card">
+        <span class="step-num">3</span>
+        <h3>Get connected</h3>
+        <p>Your data lands on the number within moments, day or night.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="agents">
+  <div class="container">
+    <div class="agent-section">
+      <div>
+        <h2>Turn data into your own small business</h2>
+        <p>Apply once, get approved, and start reselling MTN, AT and Telecel bundles from your own agent wallet — no shop or stock required.</p>
+        <ul class="agent-benefits">
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Commission on every bundle you sell
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Your own wallet, top up anytime with MoMo
+          </li>
+          <li>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            A dashboard to track sales, commission and payouts
+          </li>
+        </ul>
+        <div class="agent-actions">
+          <a href="agent-register.html" class="btn btn-primary">Apply to Become an Agent</a>
+          <a href="agent-login.html" class="btn btn-ghost">I'm already an agent</a>
+        </div>
+      </div>
+      <div class="agent-panel">
+        <svg class="agent-illustration" viewBox="0 0 320 360" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="shirtGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#8FE0FA"/>
+              <stop offset="1" stop-color="#2A2FA0"/>
+            </linearGradient>
+          </defs>
+          <circle cx="160" cy="180" r="150" fill="rgba(255,255,255,0.10)"/>
+          <circle cx="160" cy="180" r="112" fill="rgba(255,255,255,0.08)"/>
+
+          <g fill="#EAFBFF">
+            <path d="M250 76 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
+            <path d="M66 128 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 Z"/>
+            <path d="M92 86 l2.5 6 6 2.5 -6 2.5 -2.5 6 -2.5 -6 -6 -2.5 6 -2.5 Z"/>
+          </g>
+
+          <path d="M118 208 C95 200 78 165 88 128 C92 113 108 108 116 118 C124 128 118 150 122 168 C126 186 132 200 118 208 Z" fill="#C98457"/>
+          <circle cx="92" cy="120" r="16" fill="#C98457"/>
+
+          <path d="M204 210 C222 196 232 160 226 128 C223 112 206 108 199 120 C192 132 200 152 196 170 C192 188 188 202 204 210 Z" fill="#C98457"/>
+          <circle cx="222" cy="118" r="14" fill="#C98457"/>
+
+          <g transform="rotate(-14 222 96)">
+            <rect x="203" y="66" width="38" height="64" rx="8" fill="#0C1B2E"/>
+            <rect x="207" y="72" width="30" height="46" rx="3" fill="#5FCFF5"/>
+            <rect x="212" y="80" width="20" height="3" rx="1.5" fill="#ffffff"/>
+            <rect x="212" y="88" width="14" height="3" rx="1.5" fill="#ffffff"/>
+          </g>
+
+          <rect x="98" y="196" width="124" height="130" rx="42" fill="url(#shirtGrad)"/>
+          <rect x="145" y="168" width="30" height="26" fill="#C98457"/>
+          <circle cx="160" cy="140" r="44" fill="#C98457"/>
+          <path d="M116 132 C112 96 130 74 160 74 C190 74 208 96 204 132 C198 118 186 108 160 108 C134 108 122 118 116 132 Z" fill="#20130C"/>
+          <circle cx="145" cy="140" r="4.5" fill="#0C1B2E"/>
+          <circle cx="176" cy="140" r="4.5" fill="#0C1B2E"/>
+          <path d="M142 156 Q160 172 178 156" stroke="#0C1B2E" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+          <g transform="translate(70,192)">
+            <circle cx="0" cy="0" r="17" fill="#FFDE59" stroke="#F2B705" stroke-width="2"/>
+            <text x="0" y="6" font-family="'Plus Jakarta Sans', sans-serif" font-size="16" font-weight="700" text-anchor="middle" fill="#5A4300">₵</text>
+          </g>
+        </svg>
+        <p class="agent-caption">
+          "I made my first sale in minutes!"
+          <span>Agents start earning commission from day one.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand" style="margin-bottom:14px;">
+          <img src="assets/logo.png" alt="ASBData Ghana" style="height:30px;" />
+        </div>
+        <p>Instant data bundles for MTN, AirtelTigo and Telecel, plus an agent program for anyone who wants to resell data in Ghana.</p>
+        <div class="network-tags">
+          <span>MTN</span><span>AT</span><span>Telecel</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#bundles">Data Bundles</a></li>
+          <li><a href="#how-it-works">How it Works</a></li>
+          <li><a href="#agents">Become an Agent</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Account</h5>
+        <ul>
+          <li><a href="agent-login.html">Agent Login</a></li>
+          <li><a href="agent-register.html">Agent Application</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="tel:+233000000000">+233 00 000 0000</a></li>
+          <li><a href="mailto:hello@asbdataghana.com">hello@asbdataghana.com</a></li>
+          <li>Accra, Ghana</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ASBData Ghana. All rights reserved.</span>
+      <span>Payments secured via Mobile Money</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+<script>
+  const bundleData = {
+    mtn: [
+      { size: '1GB', price: 6 }, { size: '2GB', price: 12 }, { size: '3GB', price: 17 },
+      { size: '4GB', price: 22 }, { size: '5GB', price: 26 }, { size: '6GB', price: 31 },
+      { size: '8GB', price: 40 }, { size: '10GB', price: 48 }, { size: '15GB', price: 70 },
+      { size: '20GB', price: 90 }, { size: '25GB', price: 110 }, { size: '30GB', price: 130 },
+    ],
+    telecel: [
+      { size: '2GB', price: 11 }, { size: '3GB', price: 16 }, { size: '5GB', price: 24 },
+      { size: '7GB', price: 32 }, { size: '10GB', price: 44 }, { size: '12GB', price: 52 },
+      { size: '15GB', price: 58 }, { size: '20GB', price: 74 },
+    ],
+    airteltigo: [
+      { size: '1GB', price: 6 }, { size: '2GB', price: 12 }, { size: '3GB', price: 18 },
+      { size: '4GB', price: 21 }, { size: '5GB', price: 25 }, { size: '6GB', price: 33 },
+      { size: '7GB', price: 38 }, { size: '8GB', price: 38 }, { size: '10GB', price: 47 },
+      { size: '12GB', price: 60 }, { size: '15GB', price: 75 }, { size: '20GB', price: 77.7 },
+    ],
+  };
+
+  const networkMeta = {
+    mtn: { tag: 'MTN', headClass: 'head-mtn', fullName: 'MTN' },
+    telecel: { tag: 'TL', headClass: 'head-telecel', fullName: 'Telecel' },
+    airteltigo: { tag: 'AT', headClass: 'head-airteltigo', fullName: 'AirtelTigo' },
+  };
+
+  const cartIcon = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M6 6l1.5 12a2 2 0 0 0 2 1.8h5a2 2 0 0 0 2-1.8L18 6M10 10v6M14 10v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
+
+  const grid = document.getElementById('bundle-grid');
+  const tabs = document.querySelectorAll('#shop-tabs .shop-tab');
+
+  function renderBundles(network) {
+    const meta = networkMeta[network];
+    grid.innerHTML = bundleData[network].map(b => `
+      <div class="bundle-card">
+        <div class="bundle-card-head ${meta.headClass}">
+          <span class="net-tag">${meta.tag}</span>
+          <span class="size">${b.size}</span>
+        </div>
+        <div class="bundle-card-body">
+          <span class="expiry-pill">Non expiry</span>
+          <div class="bundle-price">GH₵${b.price.toFixed(2)}</div>
+          <button type="button" class="buy-btn" data-network="${network}" data-size="${b.size}" data-price="${b.price}">
+            ${cartIcon} Buy Now
+          </button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      renderBundles(tab.dataset.network);
+    });
+  });
+
+  renderBundles('mtn');
+
+  // Buy modal
+  const modal = document.getElementById('buy-modal');
+  const modalSummary = document.getElementById('modal-summary');
+  const modalClose = document.getElementById('modal-close');
+  const buySubmit = document.getElementById('buy-submit');
+  const buyForm = document.getElementById('buy-form');
+  const buyMessage = document.getElementById('buy-message');
+  let activeBundle = null;
+
+  grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.buy-btn');
+    if (!btn) return;
+    activeBundle = {
+      network: networkMeta[btn.dataset.network].fullName,
+      size: btn.dataset.size,
+      price: parseFloat(btn.dataset.price),
+    };
+    modalSummary.innerHTML = `
+      <div class="ms-row"><span>Network</span><span>${activeBundle.network}</span></div>
+      <div class="ms-row"><span>Bundle</span><span>${activeBundle.size} · Non expiry</span></div>
+      <div class="ms-total"><span>Total</span><span>GH₵${activeBundle.price.toFixed(2)}</span></div>
+    `;
+    buySubmit.textContent = `Pay GH₵${activeBundle.price.toFixed(2)} with MoMo`;
+    buyMessage.classList.remove('show');
+    buyForm.reset();
+    modal.classList.add('open');
+  });
+
+  function closeModal() { modal.classList.remove('open'); }
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+  buyForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const number = document.getElementById('buy-number').value;
+    buyMessage.textContent = `Payment confirmed — ${activeBundle.size} is on its way to ${number}.`;
+    buyMessage.classList.add('show', 'success');
+    setTimeout(closeModal, 1600);
+  });
+</script>
+</body>
+</html>

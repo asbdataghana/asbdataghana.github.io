@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Agent Dashboard | ASBData Ghana</title>
+<link rel="icon" href="assets/logo.png" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="dash-shell">
+  <aside class="dash-sidebar">
+    <div class="dash-brand">
+      <div class="dash-brand-mark"><img src="assets/logo.png" alt="" /></div>
+      <span>ASBData Ghana</span>
+    </div>
+    <ul class="dash-nav">
+      <li><a class="active" href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 12 12 4l8 8M6 10v10h12V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Overview
+      </a></li>
+      <li><a href="#quick-buy">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M6 6l1.5 12a2 2 0 0 0 2 1.8h5a2 2 0 0 0 2-1.8L18 6M10 10v6M14 10v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Buy Data
+      </a></li>
+      <li><a href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18M7 15h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Wallet &amp; Top-up
+      </a></li>
+      <li><a href="#transactions">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 3v4M16 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.6"/></svg>
+        Transactions
+      </a></li>
+      <li><a href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M17 20v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M9 10a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM23 20v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Refer &amp; Earn
+      </a></li>
+      <li><a href="#">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c1-3.5 4-5 7-5s6 1.5 7 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        Profile
+      </a></li>
+    </ul>
+    <a href="index.html" class="dash-logout">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Log out
+    </a>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <h1>Overview</h1>
+      <div class="dash-topbar-right">
+        <div class="wallet-chip">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M3 10h18" stroke="currentColor" stroke-width="1.6"/></svg>
+          GH₵1,240.00
+        </div>
+        <div class="avatar">KA</div>
+      </div>
+    </div>
+
+    <div class="dash-content">
+      <div class="stat-cards">
+        <div class="stat-card">
+          <div class="label">Wallet balance</div>
+          <div class="value">GH₵1,240.00</div>
+          <div class="delta">Ready to spend</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Bundles sold this month</div>
+          <div class="value" id="stat-sold">318</div>
+          <div class="delta">+24 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Commission earned</div>
+          <div class="value" id="stat-commission">GH₵412.50</div>
+          <div class="delta">+GH₵38 this week</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Active referrals</div>
+          <div class="value">6</div>
+          <div class="delta">2 pending approval</div>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="panel" id="quick-buy">
+          <h3>Quick buy</h3>
+          <p class="panel-sub">Sell a bundle straight from your dashboard.</p>
+
+          <div class="network-pill-select" id="network-pills">
+            <button type="button" class="network-pill active" data-net="mtn">MTN</button>
+            <button type="button" class="network-pill" data-net="at">AT</button>
+            <button type="button" class="network-pill" data-net="telecel">Telecel</button>
+          </div>
+
+          <form id="quick-buy-form">
+            <div class="field">
+              <label for="qb-bundle">Bundle</label>
+              <select id="qb-bundle">
+                <option value="6">1GB — GH₵6</option>
+                <option value="26" selected>5GB — GH₵26</option>
+                <option value="48">10GB — GH₵48</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="qb-number">Recipient number</label>
+              <input id="qb-number" type="tel" placeholder="024 000 0000" required />
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Buy &amp; Deliver Bundle</button>
+          </form>
+        </div>
+
+        <div class="panel" id="transactions">
+          <h3>Recent transactions</h3>
+          <p class="panel-sub">Your last few bundle sales.</p>
+          <table class="table" id="tx-table">
+            <thead>
+              <tr><th>Network</th><th>Bundle</th><th>Number</th><th>Amount</th><th>Status</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MTN</td><td>5GB</td><td>024 XXX 1123</td><td>GH₵26</td>
+                <td><span class="status-pill done">Delivered</span></td>
+              </tr>
+              <tr>
+                <td>Telecel</td><td>2GB</td><td>050 XXX 8842</td><td>GH₵11</td>
+                <td><span class="status-pill done">Delivered</span></td>
+              </tr>
+              <tr>
+                <td>AT</td><td>10GB</td><td>027 XXX 3390</td><td>GH₵42</td>
+                <td><span class="status-pill pending">Processing</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  // Network pill selection
+  const pills = document.querySelectorAll('#network-pills .network-pill');
+  const bundleSelect = document.getElementById('qb-bundle');
+  const bundles = {
+    mtn: [{ label: '1GB — GH₵6', value: 6 }, { label: '5GB — GH₵26', value: 26 }, { label: '10GB — GH₵48', value: 48 }],
+    at: [{ label: '1.5GB — GH₵7', value: 7 }, { label: '6GB — GH₵28', value: 28 }, { label: '10GB — GH₵42', value: 42 }],
+    telecel: [{ label: '2GB — GH₵11', value: 11 }, { label: '7GB — GH₵32', value: 32 }, { label: '15GB — GH₵58', value: 58 }],
+  };
+
+  function renderBundles(net) {
+    bundleSelect.innerHTML = '';
+    bundles[net].forEach((b, i) => {
+      const opt = document.createElement('option');
+      opt.value = b.value;
+      opt.textContent = b.label;
+      if (i === 1) opt.selected = true;
+      bundleSelect.appendChild(opt);
+    });
+  }
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+      renderBundles(pill.dataset.net);
+    });
+  });
+
+  // Quick buy: mock-add a transaction row + bump stats
+  const qbForm = document.getElementById('quick-buy-form');
+  const txBody = document.querySelector('#tx-table tbody');
+  const soldStat = document.getElementById('stat-sold');
+  const commissionStat = document.getElementById('stat-commission');
+  let soldCount = 318;
+  let commission = 412.5;
+
+  qbForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const activeNet = document.querySelector('.network-pill.active').dataset.net;
+    const netLabel = { mtn: 'MTN', at: 'AT', telecel: 'Telecel' }[activeNet];
+    const bundleText = bundleSelect.options[bundleSelect.selectedIndex].text;
+    const [size, price] = bundleText.split(' — GH₵');
+    const number = document.getElementById('qb-number').value || '024 XXX XXXX';
+
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${netLabel}</td>
+      <td>${size}</td>
+      <td>${number}</td>
+      <td>GH₵${price}</td>
+      <td><span class="status-pill done">Delivered</span></td>
+    `;
+    txBody.prepend(row);
+
+    soldCount += 1;
+    commission += Math.round(parseFloat(price) * 0.08 * 100) / 100;
+    soldStat.textContent = soldCount;
+    commissionStat.textContent = `GH₵${commission.toFixed(2)}`;
+
+    qbForm.reset();
+    renderBundles(activeNet);
+  });
+</script>
+</body>
+</html>
