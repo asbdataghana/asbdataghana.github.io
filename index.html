@@ -33,17 +33,16 @@
 
 <section class="hero">
   <div class="container hero-copy">
-    <img src="assets/logo.png" alt="ASBData Ghana" class="hero-logo" />
-    <h1>Ghana's fastest way to buy data — and to earn from it.</h1>
-    <p>ASBData Ghana delivers MTN, AirtelTigo and Telecel bundles in seconds flat, and pays real commission to anyone who becomes an agent.</p>
+    <h1>Buy data in <span class="grad-text">seconds</span>. Earn as an agent for life.</h1>
+    <p>ASBData Ghana delivers MTN, AirtelTigo and Telecel bundles instantly, and pays real commission to anyone who becomes an agent.</p>
     <div class="hero-actions">
       <a href="#bundles" class="btn btn-primary">Buy Data Now</a>
       <a href="agent-register.html" class="btn btn-ghost">Become an Agent</a>
     </div>
     <div class="hero-trust">
-      <span><strong>24/7</strong> instant delivery</span>
-      <span><strong>3</strong> networks supported</span>
-      <span><strong>MoMo</strong> payments accepted</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> <strong>24/7</strong>&nbsp;instant delivery</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> <strong>3</strong>&nbsp;networks supported</span>
+      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> <strong>MoMo</strong>&nbsp;payments accepted</span>
     </div>
   </div>
 </section>
@@ -52,7 +51,7 @@
   <div class="container">
     <div class="section-head center">
       <h2>Grab a data bundle</h2>
-      <p>Choose a network below, then buy straight from the card — no account needed.</p>
+      <p>Choose a network below, then buy straight from the card.</p>
     </div>
     <div class="shop-tabs" id="shop-tabs">
       <button class="shop-tab active" data-network="mtn">MTN</button>
@@ -67,16 +66,96 @@
 <div class="modal-overlay" id="buy-modal">
   <div class="modal-card">
     <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
-    <h3>Confirm your purchase</h3>
-    <div class="modal-summary" id="modal-summary"></div>
-    <div id="buy-message" class="form-message"></div>
-    <form id="buy-form">
-      <div class="field">
-        <label for="buy-number">Recipient number</label>
-        <input id="buy-number" type="tel" placeholder="024 000 0000" required />
+
+    <!-- Step 1: bundle + recipient -->
+    <div class="modal-step" id="step-select">
+      <div class="modal-head">
+        <div class="modal-head-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 6h18M6 6l1.5 12a2 2 0 0 0 2 1.8h5a2 2 0 0 0 2-1.8L18 6M10 10v6M14 10v6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <h3>Buy Data Bundle</h3>
+          <p class="modal-sub">Review your bundle, then continue to checkout</p>
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block" id="buy-submit">Pay with MoMo</button>
-    </form>
+
+      <div class="select-summary">
+        <div class="ss-top">
+          <span class="ss-tag" id="ss-network-tag">MTN</span>
+          <span class="ss-label">Selected</span>
+        </div>
+        <div class="ss-row">
+          <select id="ss-bundle-select"></select>
+          <span class="ss-price" id="ss-price">GH₵0.00</span>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="buy-number">Recipient phone number</label>
+        <div class="input-check" id="number-check">
+          <input id="buy-number" type="tel" placeholder="024 000 0000" inputmode="numeric" />
+          <svg class="check-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+
+      <div class="info-box">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v5M12 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        <div>
+          <strong>Account required</strong>
+          <p>Log in or create a free account so we can confirm your order and deliver it instantly.</p>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block" id="to-confirm-btn">Continue</button>
+    </div>
+
+    <!-- Step 2: confirm order -->
+    <div class="modal-step" id="step-confirm" hidden>
+      <h3>Confirm your order</h3>
+      <p class="modal-sub">Make sure everything looks right before you continue.</p>
+
+      <div class="confirm-pill">
+        <span id="cf-tag">MTN</span>
+        <span id="cf-size">2GB</span>
+      </div>
+
+      <div class="confirm-rows">
+        <div class="cf-row"><span>Recipient</span><strong id="cf-number">-</strong></div>
+        <div class="cf-row"><span>Network</span><strong id="cf-network">-</strong></div>
+        <div class="cf-row"><span>Bundle</span><strong id="cf-bundle">-</strong></div>
+      </div>
+      <div class="cf-total"><span>Total</span><strong id="cf-total">GH₵0.00</strong></div>
+
+      <p class="confirm-warning">Check the recipient number carefully. Data sent to the wrong number <strong>cannot be reversed or refunded</strong>.</p>
+
+      <div class="modal-actions">
+        <button type="button" class="btn btn-ghost" id="back-to-select">Back</button>
+        <button type="button" class="btn btn-primary" id="confirm-continue-btn">Confirm &amp; Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 3: login / sign up gate -->
+    <div class="modal-step" id="step-auth" hidden>
+      <h3 id="auth-title">Log in to continue</h3>
+      <p class="modal-sub" id="auth-sub">Your order is saved. Log in to complete checkout.</p>
+      <div id="auth-message" class="form-message"></div>
+      <form id="auth-form">
+        <div class="field" id="auth-name-field" hidden>
+          <label for="auth-name">Full name</label>
+          <input id="auth-name" type="text" placeholder="e.g. Ama Owusu" />
+        </div>
+        <div class="field">
+          <label for="auth-id">Phone number or email</label>
+          <input id="auth-id" type="text" placeholder="024 000 0000 or you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="auth-password">Password</label>
+          <input id="auth-password" type="password" placeholder="••••••••" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" id="auth-submit">Log In &amp; Continue</button>
+      </form>
+      <p class="form-foot" id="auth-toggle-text">New here? <a href="#" id="auth-toggle-link">Create an account</a></p>
+    </div>
   </div>
 </div>
 
@@ -111,7 +190,7 @@
     <div class="agent-section">
       <div>
         <h2>Turn data into your own small business</h2>
-        <p>Apply once, get approved, and start reselling MTN, AT and Telecel bundles from your own agent wallet — no shop or stock required.</p>
+        <p>Apply once, get approved, and start reselling MTN, AT and Telecel bundles from your own agent wallet. No shop or stock required.</p>
         <ul class="agent-benefits">
           <li>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -188,7 +267,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="brand" style="margin-bottom:14px;">
-          <img src="assets/logo.png" alt="ASBData Ghana" style="height:30px;" />
+          <img src="assets/logo.png" alt="ASBData Ghana" style="height:52px;" />
         </div>
         <p>Instant data bundles for MTN, AirtelTigo and Telecel, plus an agent program for anyone who wants to resell data in Ghana.</p>
         <div class="network-tags">
@@ -290,29 +369,54 @@
 
   // Buy modal
   const modal = document.getElementById('buy-modal');
-  const modalSummary = document.getElementById('modal-summary');
   const modalClose = document.getElementById('modal-close');
-  const buySubmit = document.getElementById('buy-submit');
-  const buyForm = document.getElementById('buy-form');
-  const buyMessage = document.getElementById('buy-message');
-  let activeBundle = null;
+  const steps = {
+    select: document.getElementById('step-select'),
+    confirm: document.getElementById('step-confirm'),
+    auth: document.getElementById('step-auth'),
+  };
+
+  const ssTag = document.getElementById('ss-network-tag');
+  const ssSelect = document.getElementById('ss-bundle-select');
+  const ssPrice = document.getElementById('ss-price');
+  const numberInput = document.getElementById('buy-number');
+  const numberCheck = document.getElementById('number-check');
+  const toConfirmBtn = document.getElementById('to-confirm-btn');
+
+  let activeNetwork = 'mtn';
+
+  function showStep(name) {
+    Object.entries(steps).forEach(([key, el]) => { el.hidden = key !== name; });
+  }
+
+  function fillBundleSelect(network) {
+    ssSelect.innerHTML = bundleData[network].map((b, i) =>
+      `<option value="${b.price}" data-size="${b.size}" ${i === 1 ? 'selected' : ''}>${b.size}</option>`
+    ).join('');
+    updatePrice();
+  }
+
+  function updatePrice() {
+    const opt = ssSelect.options[ssSelect.selectedIndex];
+    ssPrice.textContent = `GH₵${parseFloat(opt.value).toFixed(2)}`;
+  }
+
+  ssSelect.addEventListener('change', updatePrice);
+
+  numberInput.addEventListener('input', () => {
+    const digits = numberInput.value.replace(/\D/g, '');
+    numberCheck.classList.toggle('valid', digits.length >= 9);
+  });
 
   grid.addEventListener('click', (e) => {
     const btn = e.target.closest('.buy-btn');
     if (!btn) return;
-    activeBundle = {
-      network: networkMeta[btn.dataset.network].fullName,
-      size: btn.dataset.size,
-      price: parseFloat(btn.dataset.price),
-    };
-    modalSummary.innerHTML = `
-      <div class="ms-row"><span>Network</span><span>${activeBundle.network}</span></div>
-      <div class="ms-row"><span>Bundle</span><span>${activeBundle.size} · Non expiry</span></div>
-      <div class="ms-total"><span>Total</span><span>GH₵${activeBundle.price.toFixed(2)}</span></div>
-    `;
-    buySubmit.textContent = `Pay GH₵${activeBundle.price.toFixed(2)} with MoMo`;
-    buyMessage.classList.remove('show');
-    buyForm.reset();
+    activeNetwork = btn.dataset.network;
+    ssTag.textContent = networkMeta[activeNetwork].tag;
+    fillBundleSelect(activeNetwork);
+    numberInput.value = '';
+    numberCheck.classList.remove('valid');
+    showStep('select');
     modal.classList.add('open');
   });
 
@@ -320,12 +424,81 @@
   modalClose.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-  buyForm.addEventListener('submit', (e) => {
+  // Step 1 -> Step 2
+  toConfirmBtn.addEventListener('click', () => {
+    if (numberInput.value.replace(/\D/g, '').length < 9) {
+      numberInput.focus();
+      return;
+    }
+    const opt = ssSelect.options[ssSelect.selectedIndex];
+    const meta = networkMeta[activeNetwork];
+    document.getElementById('cf-tag').textContent = meta.tag;
+    document.getElementById('cf-size').textContent = opt.dataset.size;
+    document.getElementById('cf-number').textContent = numberInput.value;
+    document.getElementById('cf-network').textContent = meta.fullName;
+    document.getElementById('cf-bundle').textContent = `${opt.dataset.size} · Non expiry`;
+    document.getElementById('cf-total').textContent = `GH₵${parseFloat(opt.value).toFixed(2)}`;
+    showStep('confirm');
+  });
+
+  document.getElementById('back-to-select').addEventListener('click', () => showStep('select'));
+
+  // Step 2 -> Step 3 (or straight to checkout if already "logged in")
+  document.getElementById('confirm-continue-btn').addEventListener('click', () => {
+    const opt = ssSelect.options[ssSelect.selectedIndex];
+    const meta = networkMeta[activeNetwork];
+    const order = {
+      networkTag: meta.tag,
+      networkName: meta.fullName,
+      size: opt.dataset.size,
+      price: parseFloat(opt.value),
+      number: numberInput.value,
+    };
+    sessionStorage.setItem('asb_order', JSON.stringify(order));
+
+    if (localStorage.getItem('asb_user')) {
+      window.location.href = 'checkout.html';
+    } else {
+      showStep('auth');
+    }
+  });
+
+  // Step 3: mock login / sign up
+  let authMode = 'login';
+  const authTitle = document.getElementById('auth-title');
+  const authSub = document.getElementById('auth-sub');
+  const authNameField = document.getElementById('auth-name-field');
+  const authSubmit = document.getElementById('auth-submit');
+  const authToggleText = document.getElementById('auth-toggle-text');
+  const authMessage = document.getElementById('auth-message');
+
+  steps.auth.addEventListener('click', (e) => {
+    const link = e.target.closest('#auth-toggle-link');
+    if (!link) return;
     e.preventDefault();
-    const number = document.getElementById('buy-number').value;
-    buyMessage.textContent = `Payment confirmed — ${activeBundle.size} is on its way to ${number}.`;
-    buyMessage.classList.add('show', 'success');
-    setTimeout(closeModal, 1600);
+    authMode = authMode === 'login' ? 'signup' : 'login';
+    if (authMode === 'signup') {
+      authTitle.textContent = 'Create your account';
+      authSub.textContent = 'Takes a few seconds. Then we will finish your order.';
+      authNameField.hidden = false;
+      authSubmit.textContent = 'Sign Up & Continue';
+      authToggleText.innerHTML = 'Already have an account? <a href="#" id="auth-toggle-link">Log in</a>';
+    } else {
+      authTitle.textContent = 'Log in to continue';
+      authSub.textContent = 'Your order is saved. Log in to complete checkout.';
+      authNameField.hidden = true;
+      authSubmit.textContent = 'Log In & Continue';
+      authToggleText.innerHTML = 'New here? <a href="#" id="auth-toggle-link">Create an account</a>';
+    }
+  });
+
+  document.getElementById('auth-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('auth-name').value || 'Guest';
+    localStorage.setItem('asb_user', JSON.stringify({ name, id: document.getElementById('auth-id').value }));
+    authMessage.textContent = authMode === 'signup' ? 'Account created. Redirecting…' : 'Logged in. Redirecting…';
+    authMessage.classList.add('show', 'success');
+    setTimeout(() => { window.location.href = 'checkout.html'; }, 900);
   });
 </script>
 </body>
