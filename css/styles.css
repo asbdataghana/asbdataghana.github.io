@@ -52,10 +52,15 @@ body {
   color: var(--ink);
   background-color: #FFFFFF;
   background-image:
-    radial-gradient(1100px 640px at 15% 4%, rgba(95, 207, 245, 0.11), transparent 62%),
-    radial-gradient(1100px 640px at 85% 96%, rgba(95, 207, 245, 0.11), transparent 62%),
-    radial-gradient(900px 680px at 88% 20%, rgba(42, 47, 160, 0.06), transparent 62%),
-    radial-gradient(900px 680px at 12% 80%, rgba(42, 47, 160, 0.06), transparent 62%);
+    radial-gradient(1200px 700px at 12% 2%, rgba(95, 207, 245, 0.26), transparent 58%),
+    radial-gradient(1200px 700px at 88% 98%, rgba(95, 207, 245, 0.26), transparent 58%),
+    radial-gradient(950px 720px at 92% 24%, rgba(42, 47, 160, 0.16), transparent 60%),
+    radial-gradient(950px 720px at 8% 76%, rgba(42, 47, 160, 0.16), transparent 60%),
+    radial-gradient(800px 600px at 50% 42%, rgba(95, 207, 245, 0.12), transparent 65%),
+    radial-gradient(700px 560px at 30% 60%, rgba(42, 47, 160, 0.08), transparent 60%),
+    url('../assets/pattern-icons.png');
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat;
+  background-size: auto, auto, auto, auto, auto, auto, 620px auto;
   -webkit-font-smoothing: antialiased;
   line-height: 1.55;
 }
@@ -170,31 +175,30 @@ p { margin: 0 0 1em; color: var(--ink-70); }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 2px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid var(--line);
+  padding: 6px;
+  border-radius: 999px;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   color: var(--ink-70);
+  box-shadow: 0 6px 18px -14px rgba(20,40,70,0.3);
 }
+.nav.scrolled .nav-links { background: var(--white); }
 .nav-links a {
-  position: relative;
-  padding: 4px 0;
-  transition: color 0.2s ease;
+  padding: 9px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  transition: background 0.22s ease, color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
 }
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 0;
-  height: 2px;
-  border-radius: 2px;
+.nav-links a:hover { background: var(--bg-soft-2); color: var(--indigo-600); transform: translateY(-1px); }
+.nav-links a.active {
   background: var(--grad-brand);
-  transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--white);
+  font-weight: 600;
+  box-shadow: 0 10px 20px -10px rgba(42,47,160,0.5);
 }
-.nav-links a:hover { color: var(--indigo-600); }
-.nav-links a:hover::after,
-.nav-links a.active::after { width: 100%; }
-.nav-links a.active { color: var(--indigo-700); font-weight: 600; }
 .nav-actions { display: flex; align-items: center; gap: 12px; }
 .nav-toggle {
   display: none;
@@ -214,9 +218,10 @@ p { margin: 0 0 1em; color: var(--ink-70); }
 
 @media (max-width: 880px) {
   .nav-links { position: fixed; top: 66px; left: 0; right: 0; background: var(--white);
-    flex-direction: column; align-items: flex-start; padding: 20px 24px 28px;
-    gap: 18px; border-bottom: 1px solid var(--line); transform: translateY(-130%);
-    transition: transform 0.25s ease; box-shadow: 0 20px 30px -20px rgba(20,40,70,0.2); }
+    flex-direction: column; align-items: stretch; padding: 14px; border: none; border-radius: 0;
+    gap: 6px; border-bottom: 1px solid var(--line); transform: translateY(-130%); box-shadow: 0 20px 30px -20px rgba(20,40,70,0.2);
+    transition: transform 0.25s ease; }
+  .nav-links a { padding: 12px 16px; }
   .nav-links.open { transform: translateY(0); }
   .nav-toggle { display: block; }
   .nav-actions .btn-ghost { display: none; }
@@ -843,4 +848,32 @@ p { margin: 0 0 1em; color: var(--ink-70); }
 
 @media (max-width: 900px) {
   .checkout-grid { grid-template-columns: 1fr; }
+}
+/* ===== Contact Us (WhatsApp) ===== */
+.contact-box {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 28px 32px;
+  box-shadow: var(--shadow-soft);
+}
+.contact-icon {
+  flex-shrink: 0;
+  width: 56px; height: 56px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+}
+.contact-text { flex: 1; min-width: 0; }
+.contact-text h3 { font-size: 1.1rem; margin-bottom: 2px; }
+.contact-text p { margin: 0; font-size: 0.95rem; }
+.contact-btn { flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .contact-box { flex-direction: column; text-align: center; padding: 28px 22px; }
+  .contact-btn { width: 100%; }
 }

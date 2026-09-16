@@ -19,7 +19,7 @@
       <a href="#bundles">Data Bundles</a>
       <a href="#how-it-works">How it Works</a>
       <a href="#agents">Become an Agent</a>
-      <a href="agent-login.html">Agent Login</a>
+      <a href="#" id="nav-signin-link">Sign In</a>
     </nav>
     <div class="nav-actions">
       <a href="agent-login.html" class="btn btn-ghost btn-sm">Agent Login</a>
@@ -133,29 +133,35 @@
         <button type="button" class="btn btn-primary" id="confirm-continue-btn">Confirm &amp; Continue</button>
       </div>
     </div>
+  </div>
+</div>
 
-    <!-- Step 3: login / sign up gate -->
-    <div class="modal-step" id="step-auth" hidden>
-      <h3 id="auth-title">Log in to continue</h3>
-      <p class="modal-sub" id="auth-sub">Your order is saved. Log in to complete checkout.</p>
-      <div id="auth-message" class="form-message"></div>
-      <form id="auth-form">
-        <div class="field" id="auth-name-field" hidden>
-          <label for="auth-name">Full name</label>
-          <input id="auth-name" type="text" placeholder="e.g. Ama Owusu" />
-        </div>
-        <div class="field">
-          <label for="auth-id">Phone number or email</label>
-          <input id="auth-id" type="text" placeholder="024 000 0000 or you@example.com" required />
-        </div>
-        <div class="field">
-          <label for="auth-password">Password</label>
-          <input id="auth-password" type="password" placeholder="••••••••" required />
-        </div>
-        <button type="submit" class="btn btn-primary btn-block" id="auth-submit">Log In &amp; Continue</button>
-      </form>
-      <p class="form-foot" id="auth-toggle-text">New here? <a href="#" id="auth-toggle-link">Create an account</a></p>
+<!-- Sign in modal (customers) -->
+<div class="modal-overlay" id="signin-modal">
+  <div class="modal-card">
+    <button class="modal-close" id="signin-close" aria-label="Close">&times;</button>
+    <div class="modal-head">
+      <div class="modal-head-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="currentColor" stroke-width="1.6"/><path d="M5 20c1-3.5 4-5 7-5s6 1.5 7 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <h3>Log in</h3>
+        <p class="modal-sub" id="signin-sub">Welcome back to ASBData Ghana.</p>
+      </div>
     </div>
+    <div id="signin-message" class="form-message"></div>
+    <form id="signin-form">
+      <div class="field">
+        <label for="signin-id">Phone number or email</label>
+        <input id="signin-id" type="text" placeholder="024 000 0000 or you@example.com" required />
+      </div>
+      <div class="field">
+        <label for="signin-password">Password</label>
+        <input id="signin-password" type="password" placeholder="••••••••" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log In</button>
+    </form>
+    <p class="form-foot">New here? <a href="customer-register.html">Create an account</a></p>
   </div>
 </div>
 
@@ -262,6 +268,21 @@
   </div>
 </section>
 
+<section class="section-tight">
+  <div class="container">
+    <div class="contact-box">
+      <div class="contact-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M20.5 3.5A10.5 10.5 0 0 0 3.6 16.3L2 22l5.8-1.5A10.5 10.5 0 1 0 20.5 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 8.7c.2-.6.6-.6 1-.6h.6c.2 0 .5 0 .7.5.3.6.9 2 1 2.1.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.2.7.2.4 1 1.5 2.1 2.4 1.4 1.2 2 1.2 2.3 1.1.3-.1.6-.5.8-.8.2-.3.5-.3.8-.2l1.9.9c.3.1.5.2.6.4.1.2.1 1-.3 1.9-.4.9-2 1.7-2.8 1.8-.8.1-1.7.2-5.4-1.6C6.3 16.8 5 13 4.8 12.5c-.2-.5-1.2-1.9-.9-3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="contact-text">
+        <h3>Need a hand?</h3>
+        <p>Chat with us on WhatsApp and we will sort you out.</p>
+      </div>
+      <a href="https://wa.me/2348135113960" target="_blank" rel="noopener" class="btn btn-primary contact-btn">Chat with us</a>
+    </div>
+  </div>
+</section>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -285,6 +306,8 @@
       <div class="footer-col">
         <h5>Account</h5>
         <ul>
+          <li><a href="index.html#signin">Sign In</a></li>
+          <li><a href="customer-register.html">Create Account</a></li>
           <li><a href="agent-login.html">Agent Login</a></li>
           <li><a href="agent-register.html">Agent Application</a></li>
         </ul>
@@ -373,7 +396,6 @@
   const steps = {
     select: document.getElementById('step-select'),
     confirm: document.getElementById('step-confirm'),
-    auth: document.getElementById('step-auth'),
   };
 
   const ssTag = document.getElementById('ss-network-tag');
@@ -424,27 +446,21 @@
   modalClose.addEventListener('click', closeModal);
   modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
 
-  // Step 1 -> Step 2
+  function populateConfirm(order) {
+    document.getElementById('cf-tag').textContent = order.networkTag;
+    document.getElementById('cf-size').textContent = order.size;
+    document.getElementById('cf-number').textContent = order.number;
+    document.getElementById('cf-network').textContent = order.networkName;
+    document.getElementById('cf-bundle').textContent = `${order.size} · Non expiry`;
+    document.getElementById('cf-total').textContent = `GH₵${order.price.toFixed(2)}`;
+  }
+
+  // Step 1: pick a network/bundle/number, then continue
   toConfirmBtn.addEventListener('click', () => {
     if (numberInput.value.replace(/\D/g, '').length < 9) {
       numberInput.focus();
       return;
     }
-    const opt = ssSelect.options[ssSelect.selectedIndex];
-    const meta = networkMeta[activeNetwork];
-    document.getElementById('cf-tag').textContent = meta.tag;
-    document.getElementById('cf-size').textContent = opt.dataset.size;
-    document.getElementById('cf-number').textContent = numberInput.value;
-    document.getElementById('cf-network').textContent = meta.fullName;
-    document.getElementById('cf-bundle').textContent = `${opt.dataset.size} · Non expiry`;
-    document.getElementById('cf-total').textContent = `GH₵${parseFloat(opt.value).toFixed(2)}`;
-    showStep('confirm');
-  });
-
-  document.getElementById('back-to-select').addEventListener('click', () => showStep('select'));
-
-  // Step 2 -> Step 3 (or straight to checkout if already "logged in")
-  document.getElementById('confirm-continue-btn').addEventListener('click', () => {
     const opt = ssSelect.options[ssSelect.selectedIndex];
     const meta = networkMeta[activeNetwork];
     const order = {
@@ -457,49 +473,69 @@
     sessionStorage.setItem('asb_order', JSON.stringify(order));
 
     if (localStorage.getItem('asb_user')) {
-      window.location.href = 'checkout.html';
+      populateConfirm(order);
+      showStep('confirm');
     } else {
-      showStep('auth');
+      closeModal();
+      openSignin({ returnToConfirm: true });
     }
   });
 
-  // Step 3: mock login / sign up
-  let authMode = 'login';
-  const authTitle = document.getElementById('auth-title');
-  const authSub = document.getElementById('auth-sub');
-  const authNameField = document.getElementById('auth-name-field');
-  const authSubmit = document.getElementById('auth-submit');
-  const authToggleText = document.getElementById('auth-toggle-text');
-  const authMessage = document.getElementById('auth-message');
+  document.getElementById('back-to-select').addEventListener('click', () => showStep('select'));
 
-  steps.auth.addEventListener('click', (e) => {
-    const link = e.target.closest('#auth-toggle-link');
-    if (!link) return;
-    e.preventDefault();
-    authMode = authMode === 'login' ? 'signup' : 'login';
-    if (authMode === 'signup') {
-      authTitle.textContent = 'Create your account';
-      authSub.textContent = 'Takes a few seconds. Then we will finish your order.';
-      authNameField.hidden = false;
-      authSubmit.textContent = 'Sign Up & Continue';
-      authToggleText.innerHTML = 'Already have an account? <a href="#" id="auth-toggle-link">Log in</a>';
-    } else {
-      authTitle.textContent = 'Log in to continue';
-      authSub.textContent = 'Your order is saved. Log in to complete checkout.';
-      authNameField.hidden = true;
-      authSubmit.textContent = 'Log In & Continue';
-      authToggleText.innerHTML = 'New here? <a href="#" id="auth-toggle-link">Create an account</a>';
-    }
+  // Step 2: confirm order, already logged in by this point -> straight to checkout
+  document.getElementById('confirm-continue-btn').addEventListener('click', () => {
+    window.location.href = 'checkout.html';
   });
 
-  document.getElementById('auth-form').addEventListener('submit', (e) => {
+  // ===== Sign in modal (nav link + buy-flow login gate) =====
+  const signinModal = document.getElementById('signin-modal');
+  const signinClose = document.getElementById('signin-close');
+  const signinSub = document.getElementById('signin-sub');
+  const signinForm = document.getElementById('signin-form');
+  const signinMessage = document.getElementById('signin-message');
+  let signinContext = null;
+
+  function openSignin(context) {
+    signinContext = context || null;
+    signinSub.textContent = signinContext && signinContext.returnToConfirm
+      ? 'Your order is saved. Log in to continue.'
+      : 'Welcome back to ASBData Ghana.';
+    signinMessage.classList.remove('show');
+    signinForm.reset();
+    signinModal.classList.add('open');
+  }
+  function closeSignin() { signinModal.classList.remove('open'); }
+
+  document.getElementById('nav-signin-link').addEventListener('click', (e) => {
     e.preventDefault();
-    const name = document.getElementById('auth-name').value || 'Guest';
-    localStorage.setItem('asb_user', JSON.stringify({ name, id: document.getElementById('auth-id').value }));
-    authMessage.textContent = authMode === 'signup' ? 'Account created. Redirecting…' : 'Logged in. Redirecting…';
-    authMessage.classList.add('show', 'success');
-    setTimeout(() => { window.location.href = 'checkout.html'; }, 900);
+    openSignin(null);
   });
+  signinClose.addEventListener('click', closeSignin);
+  signinModal.addEventListener('click', (e) => { if (e.target === signinModal) closeSignin(); });
+
+  signinForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    localStorage.setItem('asb_user', JSON.stringify({ id: document.getElementById('signin-id').value }));
+    signinMessage.textContent = 'Logged in. Continuing…';
+    signinMessage.classList.add('show', 'success');
+    setTimeout(() => {
+      closeSignin();
+      if (signinContext && signinContext.returnToConfirm) {
+        const order = JSON.parse(sessionStorage.getItem('asb_order') || 'null');
+        if (order) {
+          populateConfirm(order);
+          modal.classList.add('open');
+          showStep('confirm');
+        }
+      }
+    }, 800);
+  });
+
+  if (window.location.hash === '#signin') {
+    openSignin(null);
+    history.replaceState(null, '', window.location.pathname);
+  }
 </script>
 </body>
 </html>

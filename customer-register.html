@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Create an Account | ASBData Ghana</title>
+<link rel="icon" href="assets/logo.png" />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <img src="assets/logo.png" alt="ASBData Ghana" />
+    </div>
+    <h1>Create your account</h1>
+    <p class="auth-sub">Sign up to buy data bundles, track your orders and check out faster next time.</p>
+
+    <div id="register-message" class="form-message"></div>
+
+    <form data-mock-submit data-message-target="register-message" data-success-text="Account created. Redirecting…">
+      <div class="field">
+        <label for="fullname">Full name</label>
+        <input id="fullname" type="text" placeholder="e.g. Ama Owusu" required />
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input id="phone" type="tel" placeholder="024 000 0000" required />
+      </div>
+
+      <div class="field">
+        <label for="email">Email address</label>
+        <input id="email" type="email" placeholder="you@example.com" required />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="password">Create password</label>
+          <input id="password" type="password" placeholder="••••••••" minlength="6" required />
+        </div>
+        <div class="field">
+          <label for="confirm-password">Confirm password</label>
+          <input id="confirm-password" type="password" placeholder="••••••••" minlength="6" required />
+        </div>
+      </div>
+
+      <label class="checkbox-field">
+        <input type="checkbox" required />
+        <span>I agree to the ASBData Ghana terms of service and privacy policy.</span>
+      </label>
+
+      <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+    </form>
+
+    <div class="form-foot">
+      Already have an account? <a href="index.html#signin">Log in here</a>
+    </div>
+    <div class="form-foot">
+      Want to resell data instead? <a href="agent-register.html">Apply as an agent</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  document.querySelector('form[data-mock-submit]').addEventListener('submit', () => {
+    const name = document.getElementById('fullname').value;
+    localStorage.setItem('asb_user', JSON.stringify({ name, id: document.getElementById('email').value }));
+    setTimeout(() => {
+      const hasOrder = sessionStorage.getItem('asb_order');
+      window.location.href = hasOrder ? 'checkout.html' : 'index.html';
+    }, 900);
+  });
+</script>
+</body>
+</html>
